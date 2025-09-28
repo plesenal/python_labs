@@ -103,5 +103,112 @@ for i in nums:
     print(f"{i} -> {min_max(i)}")
 ```
 ![image1!](./images/lab02/arrays/min_max.png)
+#### unique_sorted
+```
+nums = [[3, 1, 2, 1, 3],[],[-1, -1, 0, 2, 2],[1.0, 1, 2.5, 2.5, 0]]
+def unique_sorted(nums):
+    return sorted(list(set(nums)))
+for i in nums:
+    print(f'{i} -> {unique_sorted(i)}')
+```
+![image1!](./images/lab02/arrays/unique_sorted.png)
+#### flatten
+```
+nums = [[[1, 2], [3, 4]],([1, 2], (3, 4, 5)),[[1], [], [2, 3]],[[1, 2], "ab"]]
+def flatten(mat):
+    st_itog = []
+    for i  in list:
+        if type(i) != str:
+            for s in i :
+                st_itog.append(s)
+        else:
+            return 'TypeError'
+    return st_itog
+for i in nums:
+     print(f'{i} -> {flatten(i)}')
+```
+![image1!](./images/lab02/arrays/flatten.png)
+### Задание 2
+#### transpose
+```
+listik =[[[1, 2, 3]],[[1], [2], [3]] , [[1, 2], [3, 4]],[[1, 2], [3]]]
+def transpose(mat: list[list[float | int]]) -> list[list] :
+    pere_list = []
+    for i in range(len(mat[0])) :
+        if len(mat) == 1 or len(mat[0]) == len(mat[1]) :
+            stroka = []
+            for j in range(len(mat)) :
+                stroka.append(mat[j][i])
+            pere_list.append(stroka)
+        else:
+            return 'ValueError'
+    return pere_list
+for i in listik:
+    print(f"{i} -> {transpose(i)}")
+```
+![image1!](./images/lab02/matrix/matrix.png)
+#### row_sums
+```
+listik = [[[1, 2, 3], [4, 5, 6]],[[-1, 1], [10, -10]],[[0, 0], [0, 0]],[[1, 2], [3]]]
+def row_sums(mat: list[list[float | int]]) -> list[float] :
+    check = 1
+    for i in range(1,len(mat)):
+        if len(mat[i-1]) != len(mat[i]):
+            check = 0
+    if check:
+        sums = [sum(x) for x in mat]
+    else:
+        return 'ValueError'
+    return sums
+for i in listik:
+   print(f"{i} -> {row_sums(i)}")
+```
+![image1!](./images/lab02/matrix/row_sums.png)
+#### col_sums
+```
+listik =[ [[1, 2, 3], [4, 5, 6]],[[-1, 1], [10, -10]],[[0, 0], [0, 0]],[[1, 2], [3]]] 
+def col_sums(mat: list[list[float | int]]) -> list[float]:
+    check = 1
+    for i in range(1,len(mat)):
+        if len(mat[i-1]) != len(mat[i]):
+            check = 0
+    if check:
+        summ = [0 for i in range(len(mat[0]))]
+        for i in range(len(mat[0])):
+            for j in range(len(mat)):
+                summ[i] += mat[j][i]
+        return summ 
+    else:
+        return 'ValueError'
+for i in listik:
+   print(f"{i} -> {col_sums(i)}")
+```
+![image1!](./images/lab02/matrix/col_sums.png)
+### Задание 3
+```
+input = [("Иванов Иван Иванович", "BIVT-25", 4.6),("Петров Пётр", "IKBO-12", 5.0),("Петров Пётр Петрович", "IKBO-12", 5.0),("  сидорова  анна   сергеевна ", "ABB-01", 3.999)]
 
+def cut_name (fio:str):
+    name = (' '.join(fio.split())).split(' ')
+    scr_name = name[0] + ' '
+    for i in range(1,len(name)):
+        scr_name += name[i][0].upper() + '.'
+    return scr_name
 
+def format_record(rec: tuple[str, str, float]) -> str:
+    if  (type(rec[0]) == str and type(rec[1]) == str and  type(rec[2]) == float  ) and (rec[0].strip() and rec[1].strip()):
+        itog =f'{cut_name(rec[0])}, гр. {rec[1]}, {rec[2]:.2f}'
+        return itog
+    elif type(rec[0]) != str or type(rec[1]) != str or  type(rec[2]) != float: 
+        return 'TypeError' 
+    elif not rec[0].strip() or not rec[1].strip():
+        return 'ValueError'
+'''
+TypeError - если не тот тип 
+ValueError - если пустое ФИО или группа 
+'''
+for i in input:
+   print(f"{i} -> {format_record(i)}")
+
+```
+![image1!](./images/lab02/C.png)
