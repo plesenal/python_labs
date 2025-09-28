@@ -88,3 +88,20 @@ for i in range(indx_secd + step,len(stroka),step ):
 print(itog_str)
 ```
 ![image1!](./images/lab01/img7.png)
+
+## Лабораторная работа 2
+### Задание 1 
+#### min_max 
+```
+nums = [[3, -1, 5, 5, 0],[42],[-5, -2, -9],[],[1.5, 2, 2.0, -3.1]]
+def min_max(nums):
+    if list:
+        return (min(nums),max(nums))
+    else:
+        return ('ValueError')
+for i in nums:
+    print(f"{i} -> {min_max(i)}")
+```
+![image1!](./images/lab02/arrays/min_max.png)
+
+
