@@ -1,14 +1,14 @@
 # python_labs 
 ## Лабораторная работа 1 
 ### Задание 1 
-```
+```python
 name = input('Имя:')
 age = int(input('Возраст: '))
 print(f'Привет {name}! Через год тебе будет  {age + 1 }') 
 ```
 ![image1!](./images/lab01/img1.png)
 ### Задание 2
-```
+```python
 num1 = float(input('a: ').replace(',','.'))
 num2 = float(input('b: ').replace(',','.'))
 sum = num1 + num2
@@ -17,7 +17,7 @@ print('sum =' ,sum,'avg =', avg)
 ```
 ![image1!](./images/lab01/img2.png)
 ### Задание 3
-```
+```python
 price = float(input('Цена (₽): '))
 discount = float(input('Скидка (%): '))
 vat = float(input('НДС (%): '))
@@ -30,7 +30,7 @@ print(f'Итого к оплате:{total:.2f}')
 ```
 ![image1!](./images/lab01/img3.png)
 ### Задание 4
-```
+```python
 minuts = int(input(''))
 hours = minuts // 60 
 min_ost = minuts % 60 
@@ -38,7 +38,7 @@ print(f'{hours}:{min_ost:02d}')
 ```
 ![image1!](./images/lab01/img4.png)
 ### Задание 5
-```
+```python
 all_name = input('ФИО:')
 all_name = ' '.join(all_name.split())
 inic = ''
@@ -50,7 +50,7 @@ print(f'Длинна (строки): {len(all_name)}')
 ```
 ![image1!](./images/lab01/img5.png)
 ### Задание 6 
-```
+```python
 kol_st = int(input())
 och_uch = 0
 zaoch_uch = 0
@@ -65,7 +65,7 @@ print (och_uch,zaoch_uch)
 ```
 ![image1!](./images/lab01/img6.png)
 ### Задание 7
-```
+```python
 stroka = input()
 stroka = stroka.split('.')[0]
 itog_str = ''
@@ -92,7 +92,7 @@ print(itog_str)
 ## Лабораторная работа 2
 ### Задание 1 
 #### min_max 
-```
+```python
 nums = [[3, -1, 5, 5, 0],[42],[-5, -2, -9],[],[1.5, 2, 2.0, -3.1]]
 def min_max(nums):
     if list:
@@ -104,7 +104,7 @@ for i in nums:
 ```
 ![image1!](./images/lab02/arrays/min_max.png)
 #### unique_sorted
-```
+```python
 nums = [[3, 1, 2, 1, 3],[],[-1, -1, 0, 2, 2],[1.0, 1, 2.5, 2.5, 0]]
 def unique_sorted(nums):
     return sorted(list(set(nums)))
@@ -113,7 +113,7 @@ for i in nums:
 ```
 ![image1!](./images/lab02/arrays/unique_sorted.png)
 #### flatten
-```
+```python
 nums = [[[1, 2], [3, 4]],([1, 2], (3, 4, 5)),[[1], [], [2, 3]],[[1, 2], "ab"]]
 def flatten(mat):
     st_itog = []
@@ -130,7 +130,7 @@ for i in nums:
 ![image1!](./images/lab02/arrays/flatten.png)
 ### Задание 2
 #### transpose
-```
+```python
 listik =[[[1, 2, 3]],[[1], [2], [3]] , [[1, 2], [3, 4]],[[1, 2], [3]]]
 def transpose(mat: list[list[float | int]]) -> list[list] :
     pere_list = []
@@ -148,7 +148,7 @@ for i in listik:
 ```
 ![image1!](./images/lab02/matrix/matrix.png)
 #### row_sums
-```
+```python
 listik = [[[1, 2, 3], [4, 5, 6]],[[-1, 1], [10, -10]],[[0, 0], [0, 0]],[[1, 2], [3]]]
 def row_sums(mat: list[list[float | int]]) -> list[float] :
     check = 1
@@ -165,7 +165,7 @@ for i in listik:
 ```
 ![image1!](./images/lab02/matrix/row_sums.png)
 #### col_sums
-```
+```python
 listik =[ [[1, 2, 3], [4, 5, 6]],[[-1, 1], [10, -10]],[[0, 0], [0, 0]],[[1, 2], [3]]] 
 def col_sums(mat: list[list[float | int]]) -> list[float]:
     check = 1
@@ -185,7 +185,7 @@ for i in listik:
 ```
 ![image1!](./images/lab02/matrix/col_sums.png)
 ### Задание 3
-```
+```python
 input = [("Иванов Иван Иванович", "BIVT-25", 4.6),("Петров Пётр", "IKBO-12", 5.0),("Петров Пётр Петрович", "IKBO-12", 5.0),("  сидорова  анна   сергеевна ", "ABB-01", 3.999)]
 
 def cut_name (fio:str):
