@@ -17,7 +17,7 @@ for el in stroka :
 step = int(indx_secd) - int(indx_first)
 for i in range(indx_secd + step,len(stroka),step ):
     itog_str += stroka[i]
-print(itog_str)
+print(itog_str + '.')
 
 
 
