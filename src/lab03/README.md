@@ -65,4 +65,4 @@ print('Топ-5:')
 for el in top:
     print(f'{el[0]} : {el[1]}')
 ```
-![image1!](python_labs//images/lab03/imgB.png)
+![image1!](../../images/lab03/imgB.png)
