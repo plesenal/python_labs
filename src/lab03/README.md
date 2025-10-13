@@ -26,7 +26,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 def tokenize(text: str) -> list[str]:
     return re.findall(r'[а-я0-9-_]+',text) # поиск любых кобинаций из букв, цифр,'-','_' 
 ```
-![image1!](python_labs//images/lab03/A/img02.png)
+![image1!](../../images/lab03/A/img02.png)
 #### count_freq
 Реализовано с помощью формирования словоря 
 ```python
@@ -45,7 +45,7 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     top = list(top_dict.items())[:n] # оставляем нужное количество для топа 
     return top
 ```
-![image1!](python_labs//images/lab03/A/img03.png)
+![image1!](../../images/lab03/A/img03.png)
 
 ### Задание B
 Скрипт `text_stats.py` читает одну строку текста из стандартного ввода (stdin), вызывает функцию из файла `lib/text.py` и выводит результат в стандартный вывод. 
