@@ -19,7 +19,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
         text = text.replace('ё','е')
     return text 
 ```
-![image1!](python_labs/images/lab03/A/img01.png)
+![image1!](images/lab03/A/img01.png)
 #### tokenize
 Реализовано с помощью регулярного выражения 
 ```python
