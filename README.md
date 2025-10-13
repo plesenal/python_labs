@@ -212,3 +212,66 @@ for i in input:
 
 ```
 ![image1!](./images/lab02/C.png)
+
+## Лабораторная работа 3
+### Задание A 
+#### normalize
+```python
+def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+    text = ' '.join(text.split())
+    for el in text:
+        if el.isupper():
+            casefold = True 
+            break
+        else:
+            casefold = False
+    if casefold:
+        text = text.casefold()
+    if 'ё' not in text:
+        yo2e = False
+    if yo2e:
+        text = text.replace('ё','е')
+    return text 
+```
+![image1!](./images/lab03/A/img01.png)
+#### tokenize
+```python
+def tokenize(text: str) -> list[str]:
+    return re.findall(r'[а-я0-9-_]+',text)
+```
+![image1!](./images/lab03/A/img02.png)
+#### count_freq
+```python
+alf = list(sorted(set(tokens)))
+    chastots = {}
+    for el in alf:
+        chastots[el] = tokens.count(el)
+    return chastots
+```
+#### top_n
+```python
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    top_dict =dict(sorted(freq.items(), key=lambda item: (-item[1], item[0])))
+    top = list(top_dict.items())[:n]
+    return top
+```
+![image1!](./images/lab03/A/img03.png)
+
+### Задание B
+```python
+from lib.text import normalize as norm 
+from lib.text import tokenize as t 
+from lib.text import count_freq as c
+from lib.text import top_n 
+text = "Привет, мир! Привет!!!"
+good_text = t(norm(text))
+kol_slov = len(good_text)
+kol_unik_slov = len(set(good_text)) 
+top = top_n(c(good_text))
+print(f'Всего слов: {kol_slov}')
+print(f'Уникальных слов: {kol_unik_slov}')
+print('Топ-5:')
+for el in top:
+    print(f'{el[0]} : {el[1]}')
+```
+![image1!](./images/lab03/imgB.png)
