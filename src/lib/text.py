@@ -18,7 +18,10 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
 
 test2 =["привет мир", "hello,world!!!", "2025 год","по-настоящему круто",'emoji 😀 не слово']
 def tokenize(text: str) -> list[str]:
-    return re.findall(r'[а-я0-9-_]+',text)
+    return re.findall(r'[а-яa-z0-9-_]+',text)
+
+for el in test2:
+    print(f'{repr(el)} -> {repr(tokenize(el))}')
 
 test3 = [["a","b","a","c","b","a"],["bb","aa","bb","aa","cc"]]
 def count_freq(tokens: list[str]) -> dict[str, int]:
