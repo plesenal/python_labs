@@ -2,7 +2,12 @@ from pathlib import Path
 import csv 
 from typing import Iterable, Sequence
 import sys
-sys.path.append(r'C:\Users\Alena\Documents\вуз\прога\python_labs')
+import os
+current_dir = Path(os.getcwd())
+#current_dir = Path.cwd()# Path(__file__).parent
+print(current_dir)
+sys.path.append(str(current_dir / 'src' / 'lib'))
+from lib.text import tokenize, normalize 
 
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     p = Path(path)
@@ -13,7 +18,7 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     except FileNotFoundError :
         print( 'FileNotFoundError')
 #print(read_text(r'C:\Users\Alena\Documents\вуз\прога\python_labs\data\input.txt'))
-print(read_text(r'C:\Users\Alena\Documents\вуз\прога\python_labs\data\test2.txt'))
+print(read_text(r'прога\python_labs\data\test2.txt'))
 '''
 для смены кодировки , нужно при вызове read_text() после файла указать encoding = "НУЖНАЯ КОДИРОВКА"
 '''
@@ -29,4 +34,4 @@ def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...
                 w.writerow(header)
         for r in rows:
             w.writerow(r)
-write_csv(read_text(r'C:\Users\Alena\Documents\вуз\прога\python_labs\data\input.txt'),"data/check.csv")
+write_csv(read_text(r'прога\python_labs\data\input.txt'),"data/check.csv")
