@@ -1,68 +1,46 @@
-from pathlib import Path
 import csv
-from typing import Iterable, Sequence, Optional
-import sys
-import os
-
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from lib.text import tokenize, normalize
+from pathlib import Path
+from typing import Iterable, Sequence
 
 
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     p = Path(path)
-    try:
-        return p.read_text(encoding=encoding)
-    except UnicodeDecodeError:
-        print('UnicodeDecodeError')
-        raise
-    except FileNotFoundError:
-        print('FileNotFoundError')
-        raise
+    return p.read_text(encoding=encoding)
 
 
-def write_csv(rows: list[tuple | list] | str,path: str | Path,header: tuple[str, ...] | None = None) -> None:
+def write_csv(rows: Iterable[Sequence],path: str | Path,header: tuple[str, ...] | None = None,encoding: str = "utf-8") -> None:
     p = Path(path)
-    p.parent.mkdir(parents=True, exist_ok=True)
-
-    if isinstance(rows, (str, bytes)):
-        rows_list = [(rows,)]
-    else:
-        rows_list = list(rows)
-
-    expected_len: Optional[int] = None
-    if header is not None:
-            expected_len = len(header)
+    rows_list = list(rows)
     if rows_list:
-        if expected_len is None:
-            expected_len = len(rows_list[0])
-        for i, r in enumerate(rows_list):
-            if len(r) != expected_len:
-                raise ValueError(f"Строка {i} имеет длину {len(r)}, но ожидалось {expected_len}")
-            
-    with p.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
+        expected_length = len(rows_list[0])
+        for i, row in enumerate(rows_list):
+            if len(row) != expected_length:
+                raise ValueError(
+                    f"Строка {i} имеет длину {len(row)}, "
+                    f"ожидалась длина {expected_length}"
+                )
+
+    if header and rows_list:
+        if len(header) != len(rows_list[0]):
+            raise ValueError(
+                f"Длина заголовка ({len(header)}) не совпадает "
+                f"с длиной строк данных ({len(rows_list[0])})"
+            )
+
+    
+    with p.open("w", newline="", encoding=encoding) as f:
+        writer = csv.writer(f)
+
         if header is not None:
-            w.writerow(list(header))
-        for r in rows_list:
-            w.writerow(r)
+            writer.writerow(header)
 
-if __name__ == "__main__":
-    repo_root = Path(__file__).resolve().parents[2]
+        for row in rows_list:
+            writer.writerow(row)
 
-    in_path = repo_root / "data1" / "input.txt"
-    out_path = repo_root / "data1" / "check.csv"
 
-    print("cwd:", Path.cwd())
-    print("Попытка прочитать:", in_path)
+def ensure_parent_dir(path: str | Path) -> None:
+    p = Path(path)
+    parent = p.parent
 
-    try:
-        text = read_text(in_path, encoding="utf-8")
-    except FileNotFoundError:
-        print(f"Файл не найден: {in_path}")
-        raise
-    except UnicodeDecodeError as e:
-        print(f"Ошибка кодировки: {e}")
-        raise
-    write_csv(text, out_path)
-    print("Записан:", out_path)
-    read_text("data/input.txt")
+    if str(parent) and str(parent) != ".":
+        parent.mkdir(parents=True, exist_ok=True)

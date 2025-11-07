@@ -38,4 +38,4 @@ def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...
             print(r)
             w.writerow(r)
 write_csv([("word","count"),("test",3)], "прога\\python_labs\\data\\check.csv") 
-#write_csv(read_text(r'прога\python_labs\data1\input.txt'),"прога\\python_labs\\data\\check.csv")
+#write_csv(read_text(r'прога\python_labs\data\input.txt'),"прога\\python_labs\\data\\check.csv")
