@@ -13,7 +13,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     if 'ё' not in text:
         yo2e = False
     if yo2e:
-        text = text.replace('ё','е')
+        text = text.replace('ё','е').replace('Е','Ё')
     return text 
 
 test2 =["привет мир", "hello,world!!!", "2025 год","по-настоящему круто",'emoji 😀 не слово']
