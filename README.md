@@ -275,3 +275,180 @@ for el in top:
     print(f'{el[0]} : {el[1]}')
 ```
 ![image1!](./images/lab03/imgB.png)
+## Лабораторная работа 4
+### Задание 1
+```python
+import csv
+from pathlib import Path
+from typing import Iterable, Sequence
+
+
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    p = Path(path)
+    return p.read_text(encoding=encoding)
+
+
+def write_csv(rows: Iterable[Sequence],path: str | Path,header: tuple[str, ...] | None = None,encoding: str = "utf-8") -> None:
+    p = Path(path)
+    rows_list = list(rows)
+    if rows_list:
+        expected_length = len(rows_list[0])
+        for i, row in enumerate(rows_list):
+            if len(row) != expected_length:
+                raise ValueError(
+                    f"Строка {i} имеет длину {len(row)}, "
+                    f"ожидалась длина {expected_length}"
+                )
+
+    if header and rows_list:
+        if len(header) != len(rows_list[0]):
+            raise ValueError(
+                f"Длина заголовка ({len(header)}) не совпадает "
+                f"с длиной строк данных ({len(rows_list[0])})"
+            )
+
+    
+    with p.open("w", newline="", encoding=encoding) as f:
+        writer = csv.writer(f)
+
+        if header is not None:
+            writer.writerow(header)
+
+        for row in rows_list:
+            writer.writerow(row)
+
+
+def ensure_parent_dir(path: str | Path) -> None:
+    p = Path(path)
+    parent = p.parent
+
+    if str(parent) and str(parent) != ".":
+        parent.mkdir(parents=True, exist_ok=True)
+```
+Кодировку можно поменять при использовании read_text, используя второй параметр
+```python
+from pathlib import Path
+from src.lab04.io_txt_csv import read_text,  write_csv
+
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+data_dir = PROJECT_ROOT / "data" / "lab04"
+print(data_dir)
+
+text = read_text(data_dir / "input.txt") # возвращает строку
+write_csv([("word","count"),("test",3)], data_dir/"check.csv")  # создаст CSV
+print(text)
+
+```
+![image1!](./images/lab04/a/img1.png)  ![image1!](./images/lab04/a/img2.png)
+
+### Задание 2
+```python
+from pathlib import Path
+from src.lab04.io_txt_csv import read_text,  write_csv
+from src.lib.text import normalize,tokenize,count_freq,top_n
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+data_dir = PROJECT_ROOT /"data" / "lab04"
+count_file = int(input("Введите количество входящих файлов (число):"))
+
+def chek_text(input_file,coding):
+    try:
+        if coding != "":
+           return tokenize(normalize(read_text(input_file, encoding=coding)))
+        else:
+            return tokenize(normalize(read_text(input_file)))
+    except FileNotFoundError:
+        return (f"Файл '{input_file}' не найден!")
+
+    except UnicodeDecodeError:
+        return (f"Невозможно прочитать с кодировкой {coding}")
+
+    if not text.strip():
+        return (("  Входной файл пустой"),
+        write_csv([], output_file, header=("word", "count")),
+                ("\nВсего слов: 0\n",
+                 "Уникальных слов: 0"))
+
+def do_report(input_file, output_file, coding):
+    text = chek_text(input_file, coding)
+    count_word = len(text)
+    text = count_freq(text)
+    count_uni_word = 0
+    for i in text.items():
+        if i[1] == 1:
+            count_uni_word += 1
+    text_for_report = [("word", "count")] + top_n(text)
+    # print(text_for_report)
+    write_csv(text_for_report, data_dir / output_file)
+    print(f"Всего слов :      {count_word}")
+    print(f"Уникальных слов : {count_uni_word}")
+    for (word, count) in text_for_report:
+        print(f"{word:<12} {count:>5}")
+
+def do_report_all(text, input_files):
+    print(f"{'file'} {'word':<12} {'count':<5}")
+    for i in range(0,len(text)):
+        text_all = top_n(count_freq(text[i]))
+        file = input_files[i]
+        for (word, count) in text_all:
+            print(f"{file} {word:<12} {count:<5}")
+
+all_text = []
+text_for_all = []
+codings = []
+input_files = []
+if count_file > 1:
+    for i in range(count_file):
+        input_name = input("Введи полное название входящего файла(по умолчанию input.txt) :")
+        if not input_name:
+            input_name = "input.txt"
+        input_files.append(input_name)
+        coding = input("Введите кодировку если она не utf-8 (по умолчанию :utf-8):")
+        if not coding:
+            coding = ""
+        codings.append(coding)
+        input_file = data_dir / input_name  
+        all_text += chek_text(input_file, coding)
+        text_for_all.append(chek_text(input_file, coding))
+    output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
+    if not output_name:
+        output_name = "report.csv"
+    all_text = ' '.join(all_text)
+    rezum_file =  data_dir / "dadada.txt"
+    with open(rezum_file, "w", encoding="utf-8") as file:
+        file.write(all_text)
+    print('='*50)
+    do_report_all(text_for_all, input_files)
+    print('~'*50)
+    do_report(rezum_file, output_name, coding="utf-8")
+
+
+elif count_file == 1:
+    input_name = input("Введи полное название входящего файла(по умолчанию input.txt) :")
+    if not input_name:
+        input_name = "input.txt"
+    output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
+    if not output_name:
+        output_name = "report.csv"
+    coding = input("Введите кодировку если она не utf-8 (по умолчанию :utf-8):")
+    if not coding:
+        coding = ""
+    input_file = data_dir /input_name #
+    output_file = data_dir /output_name#
+    do_report(input_file, output_file, coding)
+```
+Проверка обычного файла 
+
+![image1!](./images/lab04/b/img1.png) ![image1!](./images/lab04/b/img2.png)
+
+Проверка пустого файла
+
+![image1!](./images/lab04/b/img3.png) ![image1!](./images/lab04/b/img4.png)
+
+Проверка файла с кодировкой cp1251
+
+![image1!](./images/lab04/b/img5.png) ![image1!](./images/lab04/b/img6.png)
+#### *************
+![image1!](./images/lab04/b/img8.png)
