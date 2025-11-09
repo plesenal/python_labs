@@ -1,9 +1,7 @@
-import json
-from pathlib import Path
-from src.lab05.json_csv import json_to_csv
+from src.lab05.json_csv import *
+def main ()-> None:
+    json_to_csv("people.json", 'abc.csv')
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-data_dir = PROJECT_ROOT /"data"/"lab05"
 '''
 data = [{"name": "Alice", "age": 22}, {"name": "Bob", "age": 25}]
 path = Path(data_dir/ "people1.json")
@@ -17,4 +15,3 @@ with data_dir.open(encoding="utf-8") as f:
     a = json.load(f)
 print(a)
 '''
-json_to_csv("people.json", 'abc.csv')

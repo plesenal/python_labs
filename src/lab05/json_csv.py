@@ -1,15 +1,15 @@
+import json
+import csv
+from pathlib import Path
+# PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+# data_dir = PROJECT_ROOT / "data" / "lab05"
 
 def json_to_csv(json_path: str, csv_path: str) -> None:
-    import json
-    import csv
-    from pathlib import Path
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-    data_dir = PROJECT_ROOT / "data" / "lab05"
-    path = Path(data_dir / json_path)
+    path = Path(json_path) #data_dir /"samples"/
     with path.open(encoding="utf-8" ) as f:
         a = json.load(f)
 
-    with open(data_dir/csv_path, "w", newline="", encoding="utf-8") as f:
+    with open(csv_path, "w", newline="", encoding="utf-8") as f: #data_dir/"out"/
         fieldnames = list(a[0].keys())
         writer = csv.DictWriter(f, fieldnames = fieldnames)
         writer.writeheader()
