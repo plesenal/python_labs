@@ -11,7 +11,6 @@ requires-python = ">=3.9"
 test = "lab05.test:main"
 json_csv = "lab05:json_csv"
 
-
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["lab05*"]
