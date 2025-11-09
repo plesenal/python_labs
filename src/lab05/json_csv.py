@@ -9,6 +9,7 @@ def json_to_csv(json_path: str, csv_path: str) -> None:
     with path.open(encoding="utf-8" ) as f:
         a = json.load(f)
 
+
     with open(csv_path, "w", newline="", encoding="utf-8") as f: #data_dir/"out"/
         fieldnames = list(a[0].keys())
         writer = csv.DictWriter(f, fieldnames = fieldnames)
@@ -27,3 +28,7 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
     Заголовок обязателен, значения сохраняются как строки.
     json.dump(..., ensure_ascii=False, indent=2)
     """
+def test()->None:
+    json_to_csv("people.json", 'abc.csv')
+if __name__ == "__main__":
+    test()

@@ -9,7 +9,7 @@ requires-python = ">=3.9"
 
 [project.scripts]
 test = "lab05.test:main"
-json_csv = "lab05:json_csv"
+json_csv = "lab05.json_csv:test"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,4 +1,4 @@
-from src.lab05.json_csv import *
+from json_csv import *
 def main ()-> None:
 
     json_to_csv("people.json", 'abc.csv')
