@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/lab05/__init__.py
+src/lab05/json_csv.py
+src/lab05/test.py
+src/lab05.egg-info/PKG-INFO
+src/lab05.egg-info/SOURCES.txt
+src/lab05.egg-info/dependency_links.txt
+src/lab05.egg-info/entry_points.txt
+src/lab05.egg-info/top_level.txt
