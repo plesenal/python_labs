@@ -3,18 +3,20 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lab05"
+name = "python_labs"
 version = "0.1.0"
 requires-python = ">=3.9"
+dependencies = [
+    "openpyxl>=3.0.0",
+]
 
 [project.scripts]
-test = "lab05.test:main"
-json_csv = "lab05.json_csv:test"
+main = "lab05.main:main"
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["lab05*"]
-[tool.setuptools.package-data]
-lab05 = [
-    "data/**/*"
-    ]
+namespaces = false

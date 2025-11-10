@@ -1,3 +1,0 @@
-[console_scripts]
-json_csv = lab05:json_csv
-test = lab05:test

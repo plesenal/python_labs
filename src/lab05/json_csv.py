@@ -1,34 +1,48 @@
 import json
 import csv
 from pathlib import Path
-# PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-# data_dir = PROJECT_ROOT / "data" / "lab05"
+
+path = "data/lab05/"
 
 def json_to_csv(json_path: str, csv_path: str) -> None:
-    path = Path(json_path) #data_dir /"samples"/
-    with path.open(encoding="utf-8" ) as f:
-        a = json.load(f)
 
+    json_file  = Path(path + 'samples/' + json_path)
+    csv_file = Path(path + 'out/' + csv_path)
 
-    with open(csv_path, "w", newline="", encoding="utf-8") as f: #data_dir/"out"/
-        fieldnames = list(a[0].keys())
+    if not json_file.exists() :
+         raise FileNotFoundError(f"Файл не найден")
+
+    try:
+        with open(json_file,encoding="utf-8" ) as f:
+            a = json.load(f)
+    except json.JSONDecodeError :
+        raise ValueError(f"Пустой JSON или неподдерживаемая структура")
+
+    with open(csv_file, "w", newline="", encoding="utf-8") as f:
+        fieldnames = list(a[0].keys()) # порядок в ридми
         writer = csv.DictWriter(f, fieldnames = fieldnames)
         writer.writeheader()
         writer.writerows(a)
 
-    """
-    Преобразует JSON-файл в CSV.
-    Поддерживает список словарей [{...}, {...}], заполняет отсутствующие поля пустыми строками.
-    Кодировка UTF-8. Порядок колонок — как в первом объекте или алфавитный (указать в README).
-    """
 def csv_to_json(csv_path: str, json_path: str) -> None:
-    pass
-    """
-    Преобразует CSV в JSON (список словарей).
-    Заголовок обязателен, значения сохраняются как строки.
-    json.dump(..., ensure_ascii=False, indent=2)
-    """
-def test()->None:
-    json_to_csv("people.json", 'abc.csv')
-if __name__ == "__main__":
-    test()
+    csv_file = Path(path + 'samples/' + csv_path)
+    json_file =  Path(path + 'out/' + json_path)
+
+    if not csv_file.exists():
+        raise FileNotFoundError(f"Файл не найден")
+    try:
+        with csv_file.open("r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            rows = list(reader)
+    except Exception :
+        raise ValueError(f"Ошибка чтения CSV")
+
+    if not rows:
+        raise ValueError("CSV файл пустой или не содержит заголовка")
+
+    try:
+        with json_file.open("w", encoding="utf-8") as f:
+            json.dump(rows, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        raise ValueError(f"Ошибка записи JSON: {e}")
+

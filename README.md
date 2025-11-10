@@ -452,3 +452,41 @@ elif count_file == 1:
 ![image1!](./images/lab04/b/img5.png) ![image1!](./images/lab04/b/img6.png)
 #### *************
 ![image1!](./images/lab04/b/img8.png)
+## Лабораторная работа 5
+Для запуска нужно из корня проекта (находясь в python_labs )  написать :
+1.
+Если есть виртуальное окружение 
+``` 
+pip install  .
+```
+если нет 
+```
+pip install -r requirements.txt
+```
+2. Запустить файл одной из этих команд 
+```
+main      # не сработает без pip install  .
+python -m lab05.main
+python src/lab05/main.py
+```
+#### После запуска попадаем в меню 
+![image1!](./images/lab05/img1.png)
+#### Примеры работы и результат 
+#### JSON -> CVS
+![image1!](./images/lab05/img2.png)
+![image1!](./images/lab05/img3.png)
+#### CVS -> JSON
+![image1!](./images/lab05/img8.png)
+![image1!](./images/lab05/img9.png)
+#### 1 вариант ошибки при JSON -> CVS или CVS -> JSON
+![image1!](./images/lab05/img4.png)
+#### 2 вариант ошибки при JSON -> CVS или CVS -> JSON
+![image1!](./images/lab05/img5.png)
+#### CSV -> XLSX
+![image1!](./images/lab05/img6.png)
+![image1!](./images/lab05/img10.png)
+#### 1 вариант ошибки при CSV -> XLSX
+![image1!](./images/lab05/img7.png)
+![image1!](./images/lab05/img11.png)
+#### 2 вариант ошибки при CSV -> XLSX
+![image1!](./images/lab05/img12.png)
