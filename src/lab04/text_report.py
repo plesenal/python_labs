@@ -48,50 +48,52 @@ def do_report_all(text, input_files):
         for (word, count) in text_all:
             print(f"{file} {word:<12} {count:<5}")
 
-all_text = []
-text_for_all = []
-codings = []
-input_files = []
-if count_file > 1:
-    for i in range(count_file):
+def main() -> None:
+    all_text = []
+    text_for_all = []
+    codings = []
+    input_files = []
+    if count_file > 1:
+        for i in range(count_file):
+            input_name = input("Введи полное название входящего файла(по умолчанию input.txt) :")
+            if not input_name:
+                input_name = "input.txt"
+            input_files.append(input_name)
+            coding = input("Введите кодировку если она не utf-8 (по умолчанию :utf-8):")
+            if not coding:
+                coding = ""
+            codings.append(coding)
+            input_file = data_dir / input_name
+            all_text += chek_text(input_file, coding)
+            text_for_all.append(chek_text(input_file, coding))
+        output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
+        if not output_name:
+            output_name = "report.csv"
+        all_text = ' '.join(all_text)
+        rezum_file =  data_dir / "dadada.txt"
+        with open(rezum_file, "w", encoding="utf-8") as file:
+            file.write(all_text)
+        print('='*50)
+        do_report_all(text_for_all, input_files)
+        print('~'*50)
+        do_report(rezum_file, output_name, coding="utf-8")
+
+
+    elif count_file == 1:
         input_name = input("Введи полное название входящего файла(по умолчанию input.txt) :")
         if not input_name:
             input_name = "input.txt"
-        input_files.append(input_name)
+        output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
+        if not output_name:
+            output_name = "report.csv"
         coding = input("Введите кодировку если она не utf-8 (по умолчанию :utf-8):")
         if not coding:
             coding = ""
-        codings.append(coding)
-        input_file = data_dir / input_name
-        all_text += chek_text(input_file, coding)
-        text_for_all.append(chek_text(input_file, coding))
-    output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
-    if not output_name:
-        output_name = "report.csv"
-    all_text = ' '.join(all_text)
-    rezum_file =  data_dir / "dadada.txt"
-    with open(rezum_file, "w", encoding="utf-8") as file:
-        file.write(all_text)
-    print('='*50)
-    do_report_all(text_for_all, input_files)
-    print('~'*50)
-    do_report(rezum_file, output_name, coding="utf-8")
-
-
-elif count_file == 1:
-    input_name = input("Введи полное название входящего файла(по умолчанию input.txt) :")
-    if not input_name:
-        input_name = "input.txt"
-    output_name = input("Введи полное название сходящего файла(по умолчанию :report.csv) :")
-    if not output_name:
-        output_name = "report.csv"
-    coding = input("Введите кодировку если она не utf-8 (по умолчанию :utf-8):")
-    if not coding:
-        coding = ""
-    input_file = data_dir /input_name #
-    output_file = data_dir /output_name#
-    do_report(input_file, output_file, coding)
-
+        input_file = data_dir /input_name #
+        output_file = data_dir /output_name#
+        do_report(input_file, output_file, coding)
+if __name__ == '__main__':
+    main()
 
 
 

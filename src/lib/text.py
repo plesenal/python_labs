@@ -36,6 +36,9 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     top = list(top_dict.items())[:n]
     return top
 
+def all_for_top_n (text: str,n:int = 5) -> list[tuple[str, int]]:
+    return top_n(count_freq(tokenize(normalize(text))), n)
+
 '''
 # normalize
 assert normalize("ПрИвЕт\nМИр\t") == "привет мир"
