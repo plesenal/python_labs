@@ -2,10 +2,8 @@ import argparse
 from src.lib.text import  *
 from src.lab04.io_txt_csv import *
 # Модуль src/lab06/cli_text.py с подкомандами:
-#
 # stats --input <txt> [--top 5] — анализ частот слов в тексте (использовать функции из lab03);
 # cat --input <path> [-n] — вывод содержимого файла построчно (с нумерацией при -n).
-import sys, pathlib
 
 def main():
     parser = argparse.ArgumentParser(description="CLI‑утилиты лабораторной №6")
