@@ -34,7 +34,8 @@ def main():
                 print("Файл не найден")
         else:
             try:
-                text = read_text(args.input, args.n)
+                text = read_text(args.input)
+                print(text)
             except FileNotFoundError:
                 print("Файл не найден")
 
