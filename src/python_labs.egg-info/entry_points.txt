@@ -1,2 +1,0 @@
-[console_scripts]
-main = lab05.main:main
