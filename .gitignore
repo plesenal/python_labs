@@ -3,3 +3,4 @@ data/lab04/.~lock.check.csv#
 .venv
 .~lock.abc
 build
+.coverage

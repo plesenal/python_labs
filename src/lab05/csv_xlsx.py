@@ -4,18 +4,19 @@ from openpyxl import Workbook
 
 path = "data/lab05/"
 
+
 def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
-    csv_file = Path(path + 'samples/' + csv_path)
-    xlsx_file = Path(path + 'out/' + xlsx_path)
+    csv_file = Path(path + "samples/" + csv_path)
+    xlsx_file = Path(path + "out/" + xlsx_path)
     if not csv_file.exists():
         raise FileNotFoundError(f"Файл не найден")
-    if not csv_file.suffix.lower() == '.csv':
+    if not csv_file.suffix.lower() == ".csv":
         raise ValueError(f"Неверный тип файла.")
     try:
         with csv_file.open(encoding="utf-8", newline="") as f:
             reader = csv.reader(f)
             rows = list(reader)
-    except Exception :
+    except Exception:
         raise ValueError(f"Ошибка чтения CSV")
     if not rows:
         raise ValueError("CSV файл пуст")
@@ -37,7 +38,7 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
                     max_length = max(max_length, len(str(cell.value)))
             except:
                 pass
-        width_a = max(max_length , 8)
+        width_a = max(max_length, 8)
         ws.column_dimensions[stolb_letter].width = width_a
     wb.save(xlsx_file)
 

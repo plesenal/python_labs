@@ -8,7 +8,12 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     return p.read_text(encoding=encoding)
 
 
-def write_csv(rows: Iterable[Sequence],path: str | Path,header: tuple[str, ...] | None = None,encoding: str = "utf-8") -> None:
+def write_csv(
+    rows: Iterable[Sequence],
+    path: str | Path,
+    header: tuple[str, ...] | None = None,
+    encoding: str = "utf-8",
+) -> None:
     p = Path(path)
     rows_list = list(rows)
     if rows_list:
@@ -27,7 +32,6 @@ def write_csv(rows: Iterable[Sequence],path: str | Path,header: tuple[str, ...] 
                 f"с длиной строк данных ({len(rows_list[0])})"
             )
 
-    
     with p.open("w", newline="", encoding=encoding) as f:
         writer = csv.writer(f)
 
