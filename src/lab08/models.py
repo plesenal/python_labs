@@ -55,7 +55,6 @@ class Student:
 
     @classmethod
     def from_dict(cls, d: dict):
-        # TODO: реализовать десереализацию из словаря
         if not isinstance(d, dict):
             raise TypeError("Data must be a dictionary")
         return cls(
