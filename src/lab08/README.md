@@ -85,7 +85,7 @@ students = [
         Student("Петров П.П.", "2002/09/01", "ФИЗ-33", 0.0),
     ]
 ``` 
-[Исходящий файл](./data/lab08/studients_output.json)
+[Исходящий файл](./data/lab08/students_output.json)
 ```json
 [
   {
