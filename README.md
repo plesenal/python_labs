@@ -576,16 +576,16 @@ pytest tests/json_csv.py
 4. __str__ 
    - Возвращает строковое представление объекта в формате: Student (Фамилия И.О., YYYY/MM/DD, Группа, GPA)
 #### Примеры запуска
-![image1!](../../images/lab08/img1.png)
+![image1!](./images/lab08/img1.png)
 #### Примеры ошибок 
-![image1!](../../images/lab08/img2.png)
+![image1!](./images/lab08/img2.png)
 ### serialize.py
 #### students_to_json(students, path)
 - Принимает список объектов Student, конвертирует их в словари и записывает в JSON-файл.
 #### students_from_json(path) 
 - Читает JSON-файл, валидирует структуру и возвращает список объектов Student. 
 #### Пример запуска
-[Входящий файл](../../data/lab08/students_input.json)
+[Входящий файл](./data/lab08/students_input.json)
 ```json
 [
   {
@@ -614,7 +614,7 @@ pytest tests/json_csv.py
   }
 ]
 ``` 
-![image1!](../../images/lab08/img3.png)
+![image1!](./images/lab08/img3.png)
 ```python 
 students = [
         Student("Иванов И.И.", "2000/01/15", "ИВТ-101", 4.5),
@@ -626,7 +626,7 @@ students = [
         Student("Петров П.П.", "2002/09/01", "ФИЗ-33", 0.0),
     ]
 ``` 
-[Исходящий файл](../../data/lab08/students_output.json)
+[Исходящий файл](./data/lab08/students_output.json)
 ```json
 [
   {
