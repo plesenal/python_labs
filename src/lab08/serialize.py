@@ -31,8 +31,6 @@ def main():
         Student("Сидорова А.А.", "2001/05/05", "МАТ-10", 5.0),
 
         Student("Петров П.П.", "2002/09/01", "ФИЗ-33", 0.0),
-
-
     ]
     #students_to_json(students, "./data/lab08/students_output.json")
     a = students_from_json("./data/lab08/students_input.json")
