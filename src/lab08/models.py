@@ -74,10 +74,11 @@ def main():
     #s = Student("Иванов И.И.", "20.01.2000", "А-101", 4.5)
     #s = Student("Иванов И.И.", "2000/01/20", "А-101", 8.0)
     #s = Student("Иванов И.И.", "2000/01/20", "", 4.0 )
-    d = {'fio': 'Иванов И.B.', 'birthdate': '2000/01/20', 'group': 'А-101', 'gpa': 4.0}
-    print(d)
-    #print(s.age())
+    #d = {'fio': 'Иванов И.B.', 'birthdate': '2000/01/20', 'group': 'А-101', 'gpa': 4.0}
+    #print(d)
+    s = "2000/01/20"
+    print(s.age())
     #print(s.to_dict())
-    print(Student.from_dict(d))
+    #print(Student.from_dict(d))
 if __name__ == "__main__":
     main()
