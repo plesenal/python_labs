@@ -16,13 +16,13 @@ class Group:
             for raw in reader:
                 norm_row: Dict[str, Any] = {}
                 for k, v in raw.items():
-                    # k может быть None если в CSV больше полей чем заголовков — пропускаем такие колонки
+                   
                     if not k:
                         continue
                     key = k.strip().lower()
                     norm_row[key] = v.strip() if (v is not None) else ""
 
-                # привести gpa к float (если возможно), иначе None
+                
                 gpa_raw = norm_row.get("gpa", "")
                 if gpa_raw != "":
                     try:
@@ -131,11 +131,11 @@ def main():
     group = Group('./data/lab09/students.csv')
     g = []
     students = Student('Штефанов Алексей','2003/07/22','SE-01',3.9)
-    group.add(students)
+    #group.add(students)
     #group.remove('Штефанов Алексей')
     #group.update('Штефанов Алексей',gpa = 4.6,group = 'FBK-25')
-    #print(group.list())
-    #print(group.find("Павлова Мария"))
-    print(group.stats())
+    print(group.list())
+    print(group.find("Павлова Мария"))
+    #print(group.stats())
 if __name__ == "__main__":
     main()
