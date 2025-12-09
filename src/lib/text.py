@@ -1,6 +1,5 @@
 import re
 
-test1 = ["ПрИвЕт\nМИр\t", "ёжик, Ёлка", "Hello\r\nWorld", "  двойные   пробелы  "]
 
 
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
@@ -107,3 +106,7 @@ assert top_n(freq, 2) == [("a",3), ("b",2)]
 freq2 = count_freq(["bb","aa","bb","aa","cc"])
 assert top_n(freq2, 2) == [("aa",2), ("bb",2)]
 """
+if __name__ == "__main__":
+    test1 = ["ПрИвЕт\nМИр\t", "ёжик, Ёлка", "Hello\r\nWorld", "  двойные   пробелы  "]
+    for el in test1:
+        print(f'{repr(el)} -> {repr(all_for_top_n(el))}')

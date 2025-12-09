@@ -32,7 +32,7 @@ class Student:
 
         if not self.fio.strip():
             raise ValueError("warning: fio is empty")
-        elif not re.match(r"^[а-яА-ЯёЁa-zA-Z-]+ [а-яА-ЯёЁa-zA-Z]\.[а-яА-ЯёЁa-zA-Z]\.$", self.fio.strip()):
+        elif not re.match(r"^(?:['\"]?[А-ЯЁа-яёA-Za-z-]+ (?:(?:[А-ЯЁа-яёA-Za-z]\.){2}|[А-ЯЁа-яёA-Za-z]+))$", self.fio.strip()):
             raise ValueError("warning: fio is invalid")
 
         if not self.group.strip():
