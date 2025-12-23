@@ -13,7 +13,7 @@ class Stack:
         except TypeError:
             return 0
     def push(self, item):
-        # корректно: добавление в конец списка O(1) амортизированно
+
         self._data.append(item)
 
 
@@ -32,7 +32,7 @@ class Stack:
             return None
 
     def is_empty(self) -> bool:
-        # TODO: улучшить реализацию
+
         if  self._data:
             return False
         else:
