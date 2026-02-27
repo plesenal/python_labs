@@ -326,9 +326,10 @@ def ensure_parent_dir(path: str | Path) -> None:
         parent.mkdir(parents=True, exist_ok=True)
 ```
 Кодировку можно поменять при использовании read_text, используя второй параметр
+
 ```python
 from pathlib import Path
-from src.lab04.io_txt_csv import read_text,  write_csv
+from src01.lab04.io_txt_csv import read_text,  write_csv
 
 
 
@@ -344,10 +345,11 @@ print(text)
 ![image1!](./images/lab04/a/img1.png)  ![image1!](./images/lab04/a/img2.png)
 
 ### Задание 2
+
 ```python
 from pathlib import Path
-from src.lab04.io_txt_csv import read_text,  write_csv
-from src.lib.text import normalize,tokenize,count_freq,top_n
+from src01.lab04.io_txt_csv import read_text,  write_csv
+from src01.lib.text import normalize,tokenize,count_freq,top_n
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 data_dir = PROJECT_ROOT /"data" / "lab04"
