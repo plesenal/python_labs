@@ -1,11 +1,12 @@
 def _validate_name(name):
     if not isinstance(name, str):
         raise TypeError("Имя должно быть строкой")
+    name = name.strip().lower()
     if  len(name) > 20:
         raise ValueError('Имя слишком длинное , сократите')
     if len(name) < 2:
         raise ValueError('Имя должно состоять более чем из 1 символа')
-    return name.strip().lower()
+    return name
 def _validate_bool(value):
     if not isinstance(value, bool):
         raise TypeError("Состояние должно быть логическим True / False")
