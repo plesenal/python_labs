@@ -1,4 +1,4 @@
-from main import *
+from model import *
 
 
 def scen1():
