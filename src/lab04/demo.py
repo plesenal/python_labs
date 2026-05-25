@@ -1,0 +1,43 @@
+from lab04.models import Trainer,EduSportsmen,SportsmenInGym,Gym
+from lab04.interfaces import Human
+def sc1():
+    a = Trainer('Anna',True,20,2,2000,5)
+    print(a)
+    a.registration()
+    print(a)
+    b = EduSportsmen('Cin',True,1)
+    print(a)
+    b.registration(2)
+    print(b)
+    print('--------------------')
+    a.make_video()
+    b.make_video()
+    print(a)
+    print(b)
+def sc2():
+    a = Trainer('Anna',True,20,2,2000,5)
+    a.registration()
+    b = EduSportsmen('Cin',True,1)
+    b.registration(2)
+    a.make_video()
+    b.make_video()
+    print(a.name,isinstance(a, Human),a.is_he_humane())
+    print(b.name,isinstance(b, Human),b.is_he_humane())
+def sc3():
+    a = Trainer('Anna',True,20,2,2000,5)
+    b = EduSportsmen('Cin',True,1)
+    c = SportsmenInGym('Alex', False)
+    a.make_video()
+    #b.make_video()
+    print(a)
+    print(b)
+    print(c)
+    sp = Gym([])
+    sp.add(a)
+    sp.add(b)
+    sp.add(c)
+    print(sp.get_only_video())
+def main():
+    sc3()
+if __name__ == '__main__':
+    main()

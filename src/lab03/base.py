@@ -7,11 +7,12 @@ class SportsmenInGym:
         2: (101, 700),
         3: (701, float('inf'))
     }
+    
     def __init__(self, name: str,state : bool) -> None:
         self._membership_level : int = 0
         self._membership_state : bool = False
         self._number_of_visits : int = 0
-
+        
         self.name = _validate_name(name)
         self.state = _validate_bool(state)
 
@@ -83,7 +84,11 @@ class SportsmenInGym:
             self.membership_state = False
             print("Абонимент деактивирован\n")
 
-
+    def registration ():
+        raise NotImplementedError("Упсс")
+    def sort_by_trainer (self):
+        sp = filter(lambda item: isinstance(item, Trainer), gym_collection)
+    
 
 
     def __str__(self) -> str:
