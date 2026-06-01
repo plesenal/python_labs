@@ -152,6 +152,8 @@ class Trainer(SportsmenInGym,Reg,Video):
     def add_seats (self,col):
         self.free_seats += col
         return self.free_seats
+    def __repr__(self):
+        return( f"Тренер {self.name} {self._age} лет \nОпыт: {self._experience} лет \n Цена: {self.price} р/час тренировки \n Количество свободных мест: {self.free_seats} \n{self.rep}\n")
 
     def __str__(self):
         return( f"Тренер {self.name} {self._age} лет \nОпыт: {self._experience} лет \n Цена: {self.price} р/час тренировки \n Количество свободных мест: {self.free_seats} \n{self.rep}\n")
@@ -160,6 +162,7 @@ class Trainer(SportsmenInGym,Reg,Video):
 class EduSportsmen(SportsmenInGym,Reg,Video):
     def __init__(self,name:str,state:bool,_membership_level:int):
         super().__init__(name,state)
+        self._membership_level = _membership_level
         self.cnt_wokot = 1 
         self.discount = _membership_level * 0.1
     @property
@@ -178,6 +181,8 @@ class EduSportsmen(SportsmenInGym,Reg,Video):
             raise ValueError('Нельзя завершить тренировку не находясь в зале')
     def make_video(self):
         self.rep.disrespect()
+    def __repr__(self):
+        return(f'Спорстмен {self.name}\n{self.state}\nОсталось треникровок: {self.cnt_wokot} \nСкидка {self._membership_level * 10}%\n {self.rep}\n')
     def __str__(self):
         return(f'Спорстмен {self.name}\n{self.state}\nОсталось треникровок: {self.cnt_wokot} \nСкидка {self._membership_level * 10}%\n {self.rep}\n')
 from lab01.validate import _validate_name
